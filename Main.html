@@ -1,27 +1,113 @@
 <html>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+
+    <meta meta name="viewport" content="user-scalable=no" />
+
     <body id = "start">
-        <p style="font-size: 100px;">Выберете Модель: </p>
-        <button id="Dino" style="font-size: 100px;">Dino</button>
-        <br>
-        <br>
-        <button id="Box" style="font-size: 100px;">Box</button>
-        <br>
-        <br>
-        <button id="Sfere" style="font-size: 100px;">Sfere</button>
+        <p id="text">Выберите Модель: </p>
+        <div id="cont">
+            <button id="Dino">Динозавр</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button id="Box">Куб</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button id="Sfere">Сфера</button>
+        </div>
     </body>
 
     <script>
         document.getElementById("Dino").onclick = function() {
-            document.getElementById("start").innerHTML = '<a-scene hidden><a-marker preset="Hiro"><a-entity position="0 0 0" rotation="0 0 0" scale="0.05 0.05 0.05" gltf-model="https://ar-js-org.github.io/.github/profile/aframe/examples/image-tracking/nft/trex/scene.gltf"></a-entity></a-marker><a-entity camera></a-entity></a-scene>'
+            document.getElementById("start").innerHTML = `
+                <a-scene hidden>
+                    <a-marker preset="Hiro">
+                        <a-entity position="0 0 0" rotation="270 0 0" scale="0.05 0.05 0.05" gltf-model="https://ar-js-org.github.io/.github/profile/aframe/examples/image-tracking/nft/trex/scene.gltf">
+                        </a-entity>
+                    </a-marker>
+                    <a-entity camera></a-entity>
+                </a-scene>`
         };
         document.getElementById("Box").onclick = function() {
-            document.getElementById("start").innerHTML = '<a-scene hidden><a-marker preset="Hiro"><a-entity geometry="primitive: box" material="color: red" light="type: point; intensity: 10.0"></a-entity></a-marker><a-entity camera></a-entity></a-scene>'
+            document.getElementById("start").innerHTML = `
+                <a-scene hidden>
+                    <a-marker preset="Hiro">
+                        <a-entity rotation="0 0 90" geometry="primitive: box" material="color: blue" >
+                        </a-entity>
+                    </a-marker>
+                    <a-entity camera></a-entity>
+                </a-scene>`
         };
         document.getElementById("Sfere").onclick = function() {
-            document.getElementById("start").innerHTML = '<a-scene hidden><a-marker preset="Hiro"><a-entity geometry="primitive: sphere; radius: 1.5" material="color: red" light="type: point; intensity: 10.0"></a-entity></a-marker><a-entity camera></a-entity></a-scene>'
+            document.getElementById("start").innerHTML = `
+                <a-scene hidden>
+                    <a-marker preset="Hiro">
+                        <a-entity rotation="0 0 90" geometry="primitive: sphere; radius: 0.5" material="color: green" >
+                        </a-entity>
+                    </a-marker>
+                    <a-entity camera></a-entity>
+                </a-scene>`
         };
     </script>
+
+    <style>
+        #Dino{
+            background: #03f417;
+            color: #050801;
+            box-shadow: 0 0 5px #03f417,
+                        0 0 25px #03f417,
+                        0 0 50px #03f417,
+                        0 0 200px #03f417;
+            font-size: 100px;
+            width:600px;
+        }
+
+        #Box{
+            background: #f4a003;
+            color: #050801;
+            box-shadow: 0 0 5px #f4a003,
+                        0 0 25px #f4a003,
+                        0 0 50px #f4a003,
+                        0 0 200px #f4a003;
+            font-size: 100px;
+            width:600px;
+        }
+
+        #Sfere{
+            background: #03e9f4;
+            color: #050801;
+            box-shadow: 0 0 5px #03e9f4,
+                        0 0 25px #03e9f4,
+                        0 0 50px #03e9f4,
+                        0 0 200px #03e9f4;
+            font-size: 100px;
+            width:600px;
+        }
+
+        #text {
+            font-size: 100px;
+            text-align: center;
+            color: #fcedd8;
+            font-family: 'Niconne', cursive;
+            font-weight: 700;
+            text-shadow: 5px 5px 0px #eb452b, 
+                        10px 10px 0px #efa032, 
+                        15px 15px 0px #46b59b, 
+                        20px 20px 0px #017e7f, 
+                        25px 25px 0px #052939, 
+                        30px 30px 0px #c11a2b, 
+                        35px 35px 0px #c11a2b, 
+                        40px 40px 0px #c11a2b, 
+                        45px 45px 0px #c11a2b;
+        }
+
+        #cont {
+            display: grid;
+            place-items: center;
+        }
+    </style>
 </html>
