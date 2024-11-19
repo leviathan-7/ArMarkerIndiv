@@ -11,18 +11,22 @@
             <br>
             <br>
             <br>
-            <br>
             <button id="Box">Куб</button>
             <br>
             <br>
             <br>
-            <br>
             <button id="Sfere">Сфера</button>
-            <br>
-            <br>
-            <br>
-            <br>
+            <p id="text">Размер и цвет:</p>
             <input type="range" id="koef" min="1" max="21" />
+            <br>
+            <br>
+            <br>
+            <br>
+            <select id="color">
+                <option value="green">Зеленый</option>
+                <option value="blue">Синий</option>
+                <option value="red">Красный</option>
+            </select>
         </div>
     </body>
 
@@ -31,10 +35,16 @@
         if (koef !== null) {
             document.getElementById("koef").value = 10 * koef
         }
+        color = localStorage.getItem("color");
+        if (color !== null) {
+            document.getElementById("color").value = color
+        }
 
         document.getElementById("Dino").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
             localStorage.setItem("koef", koef);
+            color = document.getElementById("color").value
+            localStorage.setItem("color", color);
             k = koef * 0.05
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
@@ -48,10 +58,12 @@
         document.getElementById("Box").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
             localStorage.setItem("koef", koef);
+            color = document.getElementById("color").value
+            localStorage.setItem("color", color);
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
-                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: box" material="color: blue" >
+                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: box" material="color: `+color+`" >
                         </a-entity>
                     </a-marker>
                     <a-entity camera></a-entity>
@@ -60,10 +72,12 @@
         document.getElementById("Sfere").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
             localStorage.setItem("koef", koef);
+            color = document.getElementById("color").value
+            localStorage.setItem("color", color);
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
-                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: sphere; radius: 0.5" material="color: green" >
+                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: sphere; radius: 0.5" material="color: `+color+`" >
                         </a-entity>
                     </a-marker>
                     <a-entity camera></a-entity>
@@ -130,7 +144,7 @@
         #koef {
             -webkit-appearance: none;
             width: 600px;
-            height: 90px;
+            height: 70px;
             background: #f4a003;
             outline: none;
             opacity: 1;
@@ -145,19 +159,28 @@
             appearance: none;
             width: 120px;
             height: 120px;
-            background: #03e9f4;
+            background: #be0cff;
             cursor: pointer;
-            box-shadow: 0 0 5px #03e9f4,
-                        0 0 25px #03e9f4,
-                        0 0 50px #03e9f4,
-                        0 0 200px #03e9f4;
+            box-shadow: 0 0 5px #be0cff,
+                        0 0 25px #be0cff,
+                        0 0 50px #be0cff,
+                        0 0 200px #be0cff;
         }
 
         #koef::-moz-range-thumb {
             width: 120px;
             height: 120px;
-            background: #03e9f4;
+            background: #be0cff;
             cursor: pointer;
+            box-shadow: 0 0 5px #be0cff,
+                        0 0 25px #be0cff,
+                        0 0 50px #be0cff,
+                        0 0 200px #be0cff;
+        }
+
+        #color {
+            width: 600px;
+            font-size: 100px;
             box-shadow: 0 0 5px #03e9f4,
                         0 0 25px #03e9f4,
                         0 0 50px #03e9f4,
