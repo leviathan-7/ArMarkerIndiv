@@ -18,35 +18,44 @@
             <br>
             <br>
             <button id="Sfere">Сфера</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <input type="range" id="koef" min="1" max="21" />
         </div>
     </body>
 
     <script>
         document.getElementById("Dino").onclick = function() {
+            koef = document.getElementById("koef").value / 10.0
+            k = koef * 0.05
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
-                        <a-entity position="0 0 0" rotation="270 0 0" scale="0.05 0.05 0.05" gltf-model="https://ar-js-org.github.io/.github/profile/aframe/examples/image-tracking/nft/trex/scene.gltf">
+                        <a-entity position="0 0 0" rotation="270 0 0" scale="`+k+` `+k+` `+k+`" gltf-model="https://ar-js-org.github.io/.github/profile/aframe/examples/image-tracking/nft/trex/scene.gltf">
                         </a-entity>
                     </a-marker>
                     <a-entity camera></a-entity>
                 </a-scene>`
         };
         document.getElementById("Box").onclick = function() {
+            koef = document.getElementById("koef").value / 10.0
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
-                        <a-entity rotation="0 0 90" geometry="primitive: box" material="color: blue" >
+                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: box" material="color: blue" >
                         </a-entity>
                     </a-marker>
                     <a-entity camera></a-entity>
                 </a-scene>`
         };
         document.getElementById("Sfere").onclick = function() {
+            koef = document.getElementById("koef").value / 10.0
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
-                        <a-entity rotation="0 0 90" geometry="primitive: sphere; radius: 0.5" material="color: green" >
+                        <a-entity rotation="0 0 90" scale="`+koef+` `+koef+` `+koef+`" geometry="primitive: sphere; radius: 0.5" material="color: green" >
                         </a-entity>
                     </a-marker>
                     <a-entity camera></a-entity>
@@ -108,6 +117,43 @@
         #cont {
             display: grid;
             place-items: center;
+        }
+
+        #koef {
+            -webkit-appearance: none;
+            width: 600px;
+            height: 90px;
+            background: #f4a003;
+            outline: none;
+            opacity: 1;
+        }
+
+        #koef:hover {
+            opacity: 1;
+        }
+
+        #koef::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 120px;
+            background: #03e9f4;
+            cursor: pointer;
+            box-shadow: 0 0 5px #03e9f4,
+                        0 0 25px #03e9f4,
+                        0 0 50px #03e9f4,
+                        0 0 200px #03e9f4;
+        }
+
+        #koef::-moz-range-thumb {
+            width: 120px;
+            height: 120px;
+            background: #03e9f4;
+            cursor: pointer;
+            box-shadow: 0 0 5px #03e9f4,
+                        0 0 25px #03e9f4,
+                        0 0 50px #03e9f4,
+                        0 0 200px #03e9f4;
         }
     </style>
 </html>
