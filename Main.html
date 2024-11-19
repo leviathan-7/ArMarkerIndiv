@@ -27,8 +27,14 @@
     </body>
 
     <script>
+        koef = localStorage.getItem("koef");
+        if (koef !== null) {
+            document.getElementById("koef").value = 10 * koef
+        }
+
         document.getElementById("Dino").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
+            localStorage.setItem("koef", koef);
             k = koef * 0.05
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
@@ -41,6 +47,7 @@
         };
         document.getElementById("Box").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
+            localStorage.setItem("koef", koef);
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
@@ -52,6 +59,7 @@
         };
         document.getElementById("Sfere").onclick = function() {
             koef = document.getElementById("koef").value / 10.0
+            localStorage.setItem("koef", koef);
             document.getElementById("start").innerHTML = `
                 <a-scene hidden>
                     <a-marker preset="Hiro">
